@@ -3,6 +3,15 @@
 {% block content %}
     <h1>Build a Blog</h1>
 
-    <p>Blog Entries Go Here</p>
+    <!-- Display Blog Posts Here -->
+    {% if blog_posts|length == 0 %}
+        <p>No postings yet...</p>
+    {% else %}
+        {% for blog_post in blog_posts %}
+            <h2>{{ blog_post.title }}</h2>
+            <p>{{ blog_post.body }}</p>
+            <hr>
+        {% endfor %}
+    {% endif %}
 
 {% endblock %}

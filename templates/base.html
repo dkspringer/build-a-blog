@@ -2,19 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
     <title>{{ title }}</title>
 </head>
 <body>
 
 <header>
-    <ul>
-        <li><a href="/">Main Blog Page</a></li>
-        <li>Add a Blog Entry</li>
-    </ul>
+    <div class="navigation">
+        <a href="/">Main Blog Page</a>
+        <a href="/create-new-entry">Add a Blog Entry</a>
+    </div>
 </header>
 
-{% block content %}
-{% endblock %}
+<section class="body">
+    {% block content %}
+    {% endblock %}
+</section>
+
+<footer>
+    <p>&copy; 2018 Dave Springer</p>
+</footer>
 
 </body>
 </html>
