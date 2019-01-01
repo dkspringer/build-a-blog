@@ -10,7 +10,7 @@
         {% for blog_post in blog_posts|reverse%}
             <div class="blog-post">
                 <h2 class="blog-title">{{ blog_post.title }}</h2>
-                <h3 class="date-and-time">Date and Time Go Here</h3>
+                <h3 class="date-and-time">{{ blog_post.date.strftime('%A, %B %d, %Y at %-I:%M %p') }}</h3>
                 <p class="blog-body">{{ blog_post.body }}</p>
             </div>
         {% endfor %}

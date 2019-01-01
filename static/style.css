@@ -1,29 +1,76 @@
+/* shared document properties */
+:root {
+    /* Colors */
+    --bg-color: #eeeef4;
+    --theme-color: #2f2a7a;
+    --theme-color-hover: #4c4797;
+
+    /* Shadows */
+    --theme-shadow: 2px 2px 1px #ddd;
+
+    /* Radius */
+    --theme-radius: 4px;
+}
+
 body {
-    margin: 0;
+    background-color: var(--bg-color);
     font-family: sans-serif;
-    background-color: #eee;
 }
 
-footer {
+html, body {
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+input[type=text], textarea {
+    border: 1px solid #ccc;
+    border-radius: var(--theme-radius);
+    box-shadow: var(--theme-shadow);
+    margin-bottom: 5px;
+    padding: 12px;
+    resize: vertical;
+    width: 100%;
+}
+
+input[type=submit] {
+    background-color: var(--theme-color);
+    border-radius: var(--theme-radius);
+    border-style: none;
+    color: white;
+    cursor: pointer;
+    float: right;
+    font-size: 12pt;
+    padding: 5px 40px;
+}
+
+input[type=submit]:hover {
+    background-color: var(--theme-color-hover);
+}
+
+nav {
+    background-color: var(--theme-color);
+    box-shadow: var(--theme-shadow);
+    overflow: hidden;
+}
+
+nav a {
+    color: white;
+    float: left;
+    font-size: 17px;
+    padding: 14px 16px;
     text-align: center;
+    text-decoration: none;
 }
 
-.page-title {
-
+nav a:hover {
+    background-color: var(--theme-color-hover);
+    color: white;
 }
 
-.blog-title {
-    font-size: 100%;
-}
-
-.date-and-time {
-    color: #888;
-    font-size: 100%;
-    font-weight: lighter;
-}
-
-main {
-    text-align: center;
+textarea {
+    box-shadow: var(--theme-shadow);
+    height: 100%;
 }
 
 .blog-body {
@@ -32,32 +79,52 @@ main {
 
 .blog-post {
     background-color: white;
-    box-shadow: 1px 1px #ddd;
-    border-radius: 5px;
+    border-radius: var(--theme-radius);
+    box-shadow: var(--theme-shadow);
     margin: 10px 100px;
     padding: 5px 50px;
     text-align: left;
 }
 
-.navigation {
-    overflow: hidden;
-    background-color: black;
+.blog-title {
+    color: var(--theme-color);
+    font-size: 100%;
+    margin-top: 10px;
 }
 
-.navigation a {
-  float: left;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
+.date-and-time {
+    color: #888;
+    font-size: 100%;
+    font-weight: lighter;
+    margin: 0;
 }
 
-.navigation a:hover {
-  background-color: #333;
-  color: white;
+.new-post {
+    height: 100%;
+    margin: 10px 20%;
 }
 
-.spacer {
-  margin-top: 10px;
+.page-title {
+    color: var(--theme-color);
+}
+
+#container {
+    min-height:100%;
+    position:relative;
+}
+
+#footer {
+    bottom:0;
+    color: #606060;
+    height:50px;
+    position:absolute;
+    text-align: center;
+    width:100%;
+}
+
+#main {
+    height: 100%;
+    padding:10px;
+    padding-bottom:50px;
+    text-align: center;
 }

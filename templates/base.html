@@ -7,21 +7,25 @@
 </head>
 <body>
 
-<header>
-    <div class="navigation">
-        <a href="/">Main Blog Page</a>
-        <a href="/create-new-entry">Add a Blog Entry</a>
+<div id="container">
+   <div id="header">
+       <nav>
+            <a href="/">Main Blog Page</a>
+            <a href="/create-new-entry">Add a Blog Entry</a>
+       </nav>
+   </div>
+
+
+    <div id="main">
+        {% block content %}
+        {% endblock %}
     </div>
-</header>
 
-<main>
-    {% block content %}
-    {% endblock %}
-</main>
 
-<footer>
-    <p>&copy; 2018 Dave Springer</p>
-</footer>
+   <div id="footer">
+        <p>&copy; 2018 Dave Springer</p>
+   </div>
+</div>
 
 </body>
 </html>

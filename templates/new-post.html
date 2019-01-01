@@ -3,13 +3,10 @@
 {% block content %}
     <h1 class="page-title">Create New Post</h1>
 
-    <form action="/" method="post">
-        <label>
-            Title:
-            <input type="text" name="post-title">
-        </label>
+    <form class="new-post" action="/" method="post">
+        <input type="text" name="post-title" maxlength="120" placeholder="Enter a title">
         <br>
-        <textarea name="post-body" rows="10" cols="60"></textarea>
+        <textarea name="post-body" maxlength="1000" rows="20"></textarea>
         <br>
         <input type="submit" value="Post">
     </form>
