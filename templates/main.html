@@ -9,11 +9,22 @@
     {% else %}
         {% for blog_post in blog_posts|reverse%}
             <div class="blog-post">
-                <a class="clickable-post" href="/view-post?post-id={{ blog_post.id }}">
+                <a class="clickable-post" href="/view-post?post_id={{ blog_post.id }}">
                     <h2 class="blog-title">{{ blog_post.title }}</h2>
                 </a>
                 <h3 class="date-and-time">{{ blog_post.date.strftime('%A, %B %d, %Y at %-I:%M %p') }}</h3>
-                <p class="blog-body">{{ blog_post.body }}</p>
+                {% autoescape false %}
+
+                {% if  blog_post.body|length > 1000 %}
+
+
+                <p class="blog-body">{{ blog_post.body[:999]|replace('\n', '<br>') }} ...</p>
+                <a href="/view-post?post_id={{ blog_post.id }}">Continued...</a>
+
+                {% else %}
+                    <p class="blog-body">{{ blog_post.body|replace('\n', '<br>') }}</p>
+                {% endif %}
+                {% endautoescape %}
             </div>
         {% endfor %}
     {% endif %}

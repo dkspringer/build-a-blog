@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 class BlogPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
-    body = db.Column(db.String(1000))
+    body = db.Column(db.Text)
     date = db.Column(db.DateTime)
 
     def __init__(self, title, body):
@@ -48,14 +48,14 @@ def add_post():
     db.session.add(new_post)
     db.session.commit()
 
-    return redirect('/')
+    return redirect(url_for('view_post', post_id=new_post.id))
 
 
 @app.route('/view-post', methods=['GET'])
 def view_post():
 
-    post_id = request.args.get('post-id')
-    blog_post = BlogPost.query.get(post_id)
+    id = request.args.get('post_id')
+    blog_post = BlogPost.query.get(id)
 
     return render_template('view-post.html', blog_post=blog_post)
 

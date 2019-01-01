@@ -6,7 +6,7 @@
     <form class="new-post" action="/submit-post" method="post">
         <input type="text" name="post-title" maxlength="120" placeholder="Enter a title" value="{{ post_title }}">
         <br>
-        <textarea name="post-body" maxlength="1000" rows="20">{{ post_body }}</textarea>
+        <textarea name="post-body" rows="20">{{ post_body }}</textarea>
         <br>
         <input type="submit" value="Post">
 
