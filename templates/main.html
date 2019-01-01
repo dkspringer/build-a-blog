@@ -9,7 +9,9 @@
     {% else %}
         {% for blog_post in blog_posts|reverse%}
             <div class="blog-post">
-                <h2 class="blog-title">{{ blog_post.title }}</h2>
+                <a class="clickable-post" href="/view-post?post-id={{ blog_post.id }}">
+                    <h2 class="blog-title">{{ blog_post.title }}</h2>
+                </a>
                 <h3 class="date-and-time">{{ blog_post.date.strftime('%A, %B %d, %Y at %-I:%M %p') }}</h3>
                 <p class="blog-body">{{ blog_post.body }}</p>
             </div>

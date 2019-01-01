@@ -3,12 +3,18 @@
 {% block content %}
     <h1 class="page-title">Create New Post</h1>
 
-    <form class="new-post" action="/" method="post">
-        <input type="text" name="post-title" maxlength="120" placeholder="Enter a title">
+    <form class="new-post" action="/submit-post" method="post">
+        <input type="text" name="post-title" maxlength="120" placeholder="Enter a title" value="{{ post_title }}">
         <br>
-        <textarea name="post-body" maxlength="1000" rows="20"></textarea>
+        <textarea name="post-body" maxlength="1000" rows="20">{{ post_body }}</textarea>
         <br>
         <input type="submit" value="Post">
+
+        <br><br>
+        <label class="error">
+            <p>{{ title_error }}</p>
+            <p>{{ body_error }}</p>
+        </label>
     </form>
 
 {% endblock %}
