@@ -15,6 +15,7 @@
 body {
     background-color: var(--bg-color);
     font-family: sans-serif;
+    font-size: 12pt;
 }
 
 html, body {
@@ -27,6 +28,8 @@ input[type=text], textarea {
     border-style: none;
     border-radius: var(--theme-radius);
     box-shadow: var(--theme-shadow);
+    font-family: inherit;
+    font-size: inherit;
     margin-bottom: 8px;
     padding: 12px;
     resize: vertical;
@@ -58,8 +61,10 @@ nav {
 nav a {
     color: white;
     float: left;
+    font-family: Comfortaa, sans-serif;
     font-size: 17px;
-    padding: 14px 16px;
+    margin: 4px 3px;
+    padding: 3px 6px;
     text-align: center;
     text-decoration: none;
 }
@@ -89,12 +94,18 @@ textarea {
 
 .blog-title {
     color: var(--theme-color);
+    font-family: Comfortaa, sans-serif;
     font-size: 100%;
     margin-top: 10px;
 }
 
 .clickable-post {
     text-decoration: none;
+}
+
+.continued, a:visited.continued {
+    color: var(--theme-color);
+    font-weight: 700;
 }
 
 .date-and-time {
@@ -117,6 +128,7 @@ textarea {
 
 .page-title {
     color: var(--theme-color);
+    font-family: Comfortaa, sans-serif;
 }
 
 #header {
@@ -144,4 +156,8 @@ textarea {
     padding:10px;
     padding-bottom:50px;
     text-align: center;
+}
+
+#main-page-link {
+    border: 1px solid white;
 }

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 class="page-title">Build a Blog</h1>
+    <h1 class="page-title">build-a-blog</h1>
 
     <!-- Display Blog Posts Here -->
     {% if blog_posts|length == 0 %}
@@ -9,7 +9,8 @@
     {% else %}
         {% for blog_post in blog_posts|reverse%}
             <div class="blog-post">
-                <a class="clickable-post" href="/view-post?post_id={{ blog_post.id }}">
+                {% set post_link = '/view-post?post_id=' + blog_post.id|string %}
+                <a class="clickable-post" href="{{ post_link }}">
                     <h2 class="blog-title">{{ blog_post.title }}</h2>
                 </a>
                 <h3 class="date-and-time">{{ blog_post.date.strftime('%A, %B %d, %Y at %-I:%M %p') }}</h3>
@@ -19,7 +20,7 @@
 
 
                 <p class="blog-body">{{ blog_post.body[:999]|replace('\n', '<br>') }} ...</p>
-                <a href="/view-post?post_id={{ blog_post.id }}">Continued...</a>
+                <p><a class="continued" href="{{ post_link }}">Continued...</a></p>
 
                 {% else %}
                     <p class="blog-body">{{ blog_post.body|replace('\n', '<br>') }}</p>

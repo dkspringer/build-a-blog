@@ -1,10 +1,20 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import json
+
+with open('params.json') as file:
+    params = json.load(file)
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:yHXfmphcFDE7GpUc@localhost:8889/build-a-blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(
+    params.get('user'),
+    params.get('password'),
+    params.get('ip'),
+    params.get('port'),
+    params.get('db_name')
+)
 db = SQLAlchemy(app)
 
 
@@ -72,7 +82,7 @@ def index():
         db.session.commit()
 
     posts = BlogPost.query.all()
-    return render_template('main.html', title='Build A Blog', blog_posts=posts)
+    return render_template('main.html', title='home', blog_posts=posts)
 
 
 if __name__ == '__main__':
