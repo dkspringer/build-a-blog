@@ -19,8 +19,9 @@
                 {% if  blog_post.body|length > 1000 %}
 
 
-                <p class="blog-body">{{ blog_post.body[:999]|replace('\n', '<br>') }} ...</p>
-                <p><a class="continued" href="{{ post_link }}">Continued...</a></p>
+                <p class="blog-body">{{ blog_post.body[:999]|replace('\n', '<br>') }} ...
+                <a class="continued" href="{{ post_link }}">[Continued]</a>
+                </p>
 
                 {% else %}
                     <p class="blog-body">{{ blog_post.body|replace('\n', '<br>') }}</p>
