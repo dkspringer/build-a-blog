@@ -152,6 +152,7 @@ a:hover.continued {
 .page-title {
     color: var(--theme-color);
     font-family: Comfortaa, sans-serif;
+    text-transform: lowercase;
 }
 
 #header {
@@ -186,6 +187,6 @@ a:hover.continued {
 }
 
 .icon {
-    font-size: 36px;
-    padding: 0 8px;
+    font-size: 32px;
+    padding: 2px 8px;
 }

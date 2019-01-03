@@ -68,6 +68,14 @@ def view_post():
 
     return render_template('view-post.html', blog_post=blog_post)
 
+@app.route('/users', methods=['GET'])
+def users():
+    return render_template('users.html')
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    return render_template('register.html')
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
