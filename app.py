@@ -41,17 +41,16 @@ def add_post():
     post_body = request.form.get('post-body')
 
     # Check if content has been provided for both title and body of post
-    title_error = ''
-    body_error = ''
+    error = ''
     if not post_title:
-        title_error = 'You must provide a title for your post'
+        error += 'You must provide a title for your post.  '
     if not post_body:
-        body_error = 'You must provide some text for your post'
+        error += 'You must provide some text for your post.  '
 
-    if title_error or body_error:
+    if error:
         return render_template('new-post.html', title='Create New Post',
                                post_title=post_title, post_body=post_body,
-                               title_error=title_error, body_error=body_error)
+                               error=error)
 
     # Add blog post to the database
     new_post = BlogPost(post_title, post_body)

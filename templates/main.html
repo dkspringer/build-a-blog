@@ -15,17 +15,13 @@
                 </a>
                 <h3 class="date-and-time">{{ blog_post.date.strftime('%A, %B %-d, %Y at %-I:%M %p') }}</h3>
                 {% autoescape false %}
-
-                {% if  blog_post.body|length > 1000 %}
-
-
-                <p class="blog-body">{{ blog_post.body[:999]|replace('\n', '<br>') }} ...
-                <a class="continued" href="{{ post_link }}">[Continued]</a>
-                </p>
-
-                {% else %}
-                    <p class="blog-body">{{ blog_post.body|replace('\n', '<br>') }}</p>
-                {% endif %}
+                    {% if  blog_post.body|length > 1000 %}
+                        <p class="blog-body">{{ blog_post.body[:999]|replace('\n', '<br>') }} ...
+                        <a class="continued" href="{{ post_link }}">[Continued]</a>
+                        </p>
+                    {% else %}
+                        <p class="blog-body">{{ blog_post.body|replace('\n', '<br>') }}</p>
+                    {% endif %}
                 {% endautoescape %}
             </div>
         {% endfor %}

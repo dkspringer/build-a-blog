@@ -3,18 +3,25 @@
 {% block content %}
     <h1 class="page-title">create new post</h1>
 
-    <form class="new-post" action="/submit-post" method="post">
-        <input type="text" name="post-title" maxlength="120" placeholder="Enter a title" value="{{ post_title }}">
-        <br>
-        <textarea name="post-body" rows="20">{{ post_body }}</textarea>
-        <br>
-        <input type="submit" value="Post">
+    <div class="new-post">
+        <form action="/submit-post" method="post">
+            <input type="text" name="post-title" maxlength="120" placeholder="Enter a title" value="{{ post_title }}">
+            <br>
+            <textarea name="post-body" rows="20">{{ post_body }}</textarea>
+            <br>
+            <input type="submit" value="Post">
 
-        <br><br>
-        <label class="error">
-            <p>{{ title_error }}</p>
-            <p>{{ body_error }}</p>
-        </label>
-    </form>
+            <br><br>
+        </form>
+
+        {% if error %}
+            <div class="error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+
+
 
 {% endblock %}
