@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <title>build-a-blog | {{ title }}</title>
 </head>
 <body>
 
 <div id="container">
    <div id="header">
-       <nav>
-           <div>
-               <a id="main-page-link" href="/">build-a-blog</a>
-           </div>
-           <div>
-               <a href="/create-new-entry">create post</a>
-           </div>
-       </nav>
+       <ul id="topnav">
+           <li class="nav-item left"><a id="home-link" href="/">Build-A-Blog</a></li>
+           <li class="nav-item left"><a href="/">Users</a></li>
+           <li class="nav-item left"><a href="/">My Posts</a></li>
+           <li class="nav-item left"><a href="/create-new-entry">Create Post</a></li>
+           <li class="nav-item right icon"><i class="fas fa-user-alt"></i></li>
+       </ul>
    </div>
 
 

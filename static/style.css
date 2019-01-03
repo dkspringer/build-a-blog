@@ -24,14 +24,17 @@ html, body {
 input[type=text], textarea {
     border: 1px solid #dadada;
     border-radius: var(--theme-radius);
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
     box-sizing: border-box;
-    font-family: inherit;
-    font-size: inherit;
-    margin-bottom: 8px;
-    padding: 12px;
+}
+
+#title-input, #body-input {
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
     resize: vertical;
     width: 100%;
+    margin-bottom: 8px;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 12px;
 }
 
 input[type=submit] {
@@ -50,26 +53,41 @@ input[type=submit]:hover {
     background-color: var(--theme-color-hover);
 }
 
-nav {
+#topnav {
     background-color: var(--theme-color);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    list-style: none;
     overflow: hidden;
+    padding: 8px;
 }
 
-nav a {
+.nav-item a {
     color: white;
-    float: left;
+    display: block;
+    padding: 8px 8px;
+    text-decoration: none;
+    text-transform: lowercase;
+}
+
+.nav-item a:hover {
+    background-color: var(--theme-color-hover);
+}
+
+.nav-item {
+    color: white;
     font-family: Comfortaa, sans-serif;
-    font-size: 17px;
-    margin: 4px 3px;
-    padding: 3px 6px;
+    font-size: 18px;
+    padding: 1px 8px;
     text-align: center;
     text-decoration: none;
 }
 
-nav a:hover {
-    background-color: var(--theme-color-hover);
-    color: white;
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
 }
 
 textarea {
@@ -163,6 +181,11 @@ a:hover.continued {
     text-align: center;
 }
 
-#main-page-link {
-    border: 1px solid white;
+#home-link {
+    outline: 1px solid white;
+}
+
+.icon {
+    font-size: 36px;
+    padding: 0 8px;
 }
