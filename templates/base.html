@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <script src="/static/script.js"></script>
     <title>build-a-blog | {{ title }}</title>
 </head>
 <body>
@@ -16,20 +17,23 @@
            <li class="nav-item left"><a href="/users">Users</a></li>
            <li class="nav-item left"><a href="/users">My Posts</a></li>
            <li class="nav-item left"><a href="/create-new-entry">Create Post</a></li>
-           <li class="nav-item right icon"><i class="fas fa-user-alt"></i></li>
+           <li class="nav-item right icon"><i id="button-login" class="fas fa-user-circle"></i></li>
        </ul>
    </div>
-
-
     <div id="main">
         {% block content %}
         {% endblock %}
     </div>
-
-
    <div id="footer">
         <p>&copy; 2018 Dave Springer</p>
    </div>
+
+    <div id="popup-login" class="popup-container">
+        <div class="popup-content">
+            <p>Login!</p>
+        </div>
+    </div>
+
 </div>
 
 </body>
