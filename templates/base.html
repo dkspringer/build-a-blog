@@ -24,8 +24,9 @@
 
             <!-- If user is not logged in, show login button, otherwise, show user button -->
             {% if not logged_in %}
-                <li class="nav-item right icon"><i id="button-login"
-                                                   class="fas fa-user-circle"></i>
+                <li class="nav-item right icon"><a href="#sign-in"
+                                                   id="button-login"
+                                                   class="fas fa-user-circle"></a>
                 </li>
             {% else %}
                 <!-- TODO: add user button -->
@@ -41,10 +42,12 @@
         <p>© 2018 Dave Springer</p>
    </div>
 
+    <a name="sign-in"></a>
     {% with form_type="login" %}
     {% include "login-register.html" %}
     {% endwith %}
 
+    <a name="register"></a>
     {% with form_type="register" %}
     {% include "login-register.html" %}
     {% endwith %}

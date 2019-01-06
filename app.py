@@ -1,4 +1,7 @@
+import hashlib
 import json
+import random
+import string
 from datetime import datetime
 
 from flask import Flask, render_template, request, redirect, url_for
@@ -19,6 +22,32 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{}:{}@{}:{}/{}'.format(
 db = SQLAlchemy(app)
 
 
+################################################################################
+# Functions for creating and verifying password hash
+################################################################################
+
+def make_salt():
+    return ''.join([random.choice(string.ascii_letters) for x in range(5)])
+
+
+def make_pw_hash(password, salt=None):
+    if not salt:
+        salt = make_salt()
+    hash = hashlib.sha256(str.encode(password + salt)).hexdigest()
+    return '{},{}'.format(hash, salt)
+
+
+def check_pw_hash(password, hash):
+    salt = hash.split(',')[1]
+    if make_pw_hash(password, salt) == hash:
+        return True
+    return False
+
+
+################################################################################
+# Database models
+################################################################################
+
 class BlogPost(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
@@ -30,6 +59,26 @@ class BlogPost(db.Model):
         self.body = body
         self.date = datetime.now()
 
+
+# TODO: finish linking to BlogPost; drop existing tables and create new ones
+"""
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_name = db.Column(db.String(50))
+    email_address = db.Column(db.String(128), unique=True)
+    pw_hash = db.Column(db.String(120))
+    blog_posts = db.relationship(BlogPost, backref='owner')
+
+    def __init__(self, user, email, password):
+        self.user_name = user
+        self.email_address = email
+        self.pw_hash = make_pw_hash(password)
+"""
+
+
+################################################################################
+# Routing functions
+################################################################################
 
 @app.route('/create-new-entry')
 def create_post():

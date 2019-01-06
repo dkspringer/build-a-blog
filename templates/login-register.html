@@ -12,6 +12,13 @@
                 {% endif %}
                 <hr>
             </div>
+            {% if form_type == 'register' %}
+                <div class="popup-form-section">
+                    <label>Username</label>
+                    <input type="text" maxlength="128" name="username"
+                           class="input-login">
+                </div>
+            {% endif %}
             <div class="popup-form-section">
                 <label>Email</label>
                 <input type="text" maxlength="128" id="login_email" name="email" class="input-login">

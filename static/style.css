@@ -1,4 +1,6 @@
-/* shared document properties */
+/*
+ * Shared document properties
+ */
 :root {
     /* Colors */
     --bg-color: #eeeef4;
@@ -16,13 +18,16 @@ body {
     font-size: 12pt;
 }
 
-html, body {
+html,
+body {
     height:100%;
     margin: 0;
     padding:0;
 }
 
-input[type=text], input[type=password], textarea {
+input[type=text],
+input[type=password],
+textarea {
     border: 1px solid #dadada;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
     border-radius: var(--theme-radius);
@@ -30,7 +35,8 @@ input[type=text], input[type=password], textarea {
     padding: 12px;
 }
 
-#title-input, #body-input {
+#title-input,
+#body-input {
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
     resize: vertical;
     width: 100%;
@@ -53,6 +59,7 @@ input[type=submit] {
     cursor: pointer;
     font: 16px Comfortaa;
     padding: 5px 40px;
+    text-transform: lowercase;
 }
 
 .new-post input[type=submit]:hover {
@@ -65,13 +72,13 @@ input[type=submit] {
     list-style: none;
     margin: 0;
     overflow: hidden;
-    padding: 8px;
+    padding: 2px;
 }
 
 .nav-item a {
     color: var(--inactive-color);
     display: block;
-    padding: 8px 8px;
+    padding: 4px 8px;
     text-decoration: none;
     text-transform: lowercase;
 }
@@ -204,11 +211,11 @@ a:hover.continued {
     padding: 2px 8px;
 }
 
-.icon i {
+.icon a {
     color: var(--inactive-color);
 }
 
-.icon:hover i {
+.icon:hover a {
     color: white;
     cursor: pointer;
 }
@@ -237,6 +244,11 @@ a:hover.continued {
 .popup-content form {
     font-family: Comfortaa;
     margin: auto;
+}
+
+.popup-content h2,
+.popup-content label {
+    text-transform: lowercase;
 }
 
 .popup-form-section {
@@ -276,4 +288,17 @@ a:hover.continued {
 .close:hover {
     color: #555;
     cursor: pointer;
+}
+
+#user-list {
+    background-color: white;
+    border-radius: var(--theme-radius);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin: 10px 100px;
+    padding: 5px 25px;
+    text-align: left;
+}
+
+.nav-item.left {
+    margin: 7px 0;
 }
