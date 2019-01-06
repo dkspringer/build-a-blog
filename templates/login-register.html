@@ -1,0 +1,49 @@
+<!-- Popup for showLogin -->
+
+<div id="{{ "popup-" + form_type }}" class="popup-container">
+    <div class="popup-content">
+        <form>
+            <span class="close">×</span>
+            <div class="popup-form-section">
+                {% if form_type == "login" %}
+                    <h2>Sign in</h2>
+                {% else %}
+                    <h2>Create account</h2>
+                {% endif %}
+                <hr>
+            </div>
+            <div class="popup-form-section">
+                <label>Email</label>
+                <input type="text" maxlength="128" id="login_email" name="email" class="input-login">
+            </div>
+            <div class="popup-form-section">
+                <label>Password</label>
+                <input type="password" maxlength="128" id="login_email" name="email" class="input-login">
+            </div>
+            {% if form_type == "register" %}
+                <div class="popup-form-section">
+                    <label>Re-enter password</label>
+                    <input type="password" maxlength="128" id="register_email" name="email" class="input-login" placeholder="At least 6 characters">
+                </div>
+            {% endif %}
+            <div class="popup-form-section">
+                <input type="submit"
+                    {% if form_type == "login" %}
+                        value="Sign in"
+                    {% else %}
+                        value="Create build-a-blog account"
+                    {% endif %}
+                >
+            </div>
+            <div class="popup-form-section">
+                <hr>
+                {% if form_type == "login" %}
+                    <p>Don't have an account? Create one <a id="link-register" href="#register">here!</a></p>
+                {% else %}
+                    <p>Already have an account? <a id="link-login" href="#sign-in">Sign in</a></p>
+                {% endif %}
+            </div>
+        </form>
+
+    </div>
+</div>

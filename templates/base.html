@@ -5,33 +5,43 @@
     <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
-    <script src="/static/script.js"></script>
+    <script defer src="/static/script.js"></script>
     <title>build-a-blog | {{ title }}</title>
 </head>
 <body>
 <div id="container">
-   <div id="header">
-       <ul id="topnav">
+    <div id="header">
+        <ul id="topnav">
            <li class="nav-item left"><a id="home-link" href="/">Build-A-Blog</a></li>
            <li class="nav-item left"><a href="/users">Users</a></li>
            <li class="nav-item left"><a href="/users">My Posts</a></li>
            <li class="nav-item left"><a href="/create-new-entry">Create Post</a></li>
            <li class="nav-item right icon"><i id="button-login" class="fas fa-user-circle"></i></li>
-       </ul>
+        </ul>
    </div>
     <div id="main">
         {% block content %}
         {% endblock %}
     </div>
    <div id="footer">
-        <p>&copy; 2018 Dave Springer</p>
+        <p>© 2018 Dave Springer</p>
    </div>
 
-    <!-- Popup for login -->
+    {% with form_type="login" %}
+    {% include "login-register.html" %}
+    {% endwith %}
+
+    {% with form_type="register" %}
+    {% include "login-register.html" %}
+    {% endwith %}
+
+    <!-- Popup for showLogin -->
+
+    <!--
     <div id="popup-login" class="popup-container">
         <div class="popup-content">
             <form>
-                <span class="close">&times;</span>
+                <span class="close">×</span>
                 <div class="login-section">
                     <h2>Sign in</h2>
                     <hr>
@@ -49,12 +59,48 @@
                 </div>
                 <div class="login-section">
                     <hr>
-                    <p>Don't have an account? Create one <a href="#register">here!</a></p>
+                    <p>Don't have an account? Create one <a id="link-register" href="#register">here!</a></p>
                 </div>
             </form>
 
         </div>
     </div>
+
+    -->
+
+    <!-- Popup for showRegister -
+    <div id="popup-register" class="popup-container">
+        <div class="popup-content">
+            <form>
+                <span class="close">×</span>
+                <div class="login-section">
+                    <h2>Sign in</h2>
+                    <hr>
+                </div>
+                <div class="login-section">
+                    <label>Email</label>
+                    <input type="text" maxlength="128" id="register_email" name="email" class="input-login">
+                </div>
+                <div class="login-section">
+                    <label>Password</label>
+                    <input type="password" maxlength="128" id="register_email" name="email" class="input-login">
+                </div>
+                <div class="login-section">
+                    <label>Re-enter password</label>
+                    <input type="password" maxlength="128" id="register_email" name="email" class="input-login" placeholder="At least 6 characters">
+                </div>
+                <div class="login-section">
+                    <input type="submit" value="Create build-a-blog account">
+                </div>
+                <div class="login-section">
+                    <hr>
+                    <p>Already have an account? <a href="#sign-in">Sign in</a></p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    -->
 
 </div>
 

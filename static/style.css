@@ -11,13 +11,13 @@
 }
 
 body {
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     font-family: sans-serif;
     font-size: 12pt;
 }
 
 html, body {
-    margin:0;
+    margin: 0;
     padding:0;
 }
 
@@ -62,6 +62,7 @@ input[type=submit] {
     background-color: var(--theme-color);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
     list-style: none;
+    margin: 0;
     overflow: hidden;
     padding: 8px;
 }
@@ -76,7 +77,6 @@ input[type=submit] {
 
 .nav-item a:hover {
     color: white;
-    /*background-color: var(--theme-color-hover);*/
 }
 
 .nav-item {
@@ -124,7 +124,8 @@ textarea {
     text-decoration: none;
 }
 
-.continued, a:visited.continued {
+.continued,
+a:visited.continued {
     color: var(--theme-color);
     font-weight: 700;
 }
@@ -208,6 +209,7 @@ a:hover.continued {
 
 .icon:hover i {
     color: white;
+    cursor: pointer;
 }
 
 .popup-container {
@@ -231,23 +233,20 @@ a:hover.continued {
     width: 400px;
 }
 
-#popup-login form {
+.popup-content form {
     font-family: Comfortaa;
     margin: auto;
 }
 
-#popup-login h1 {
-}
-
-.login-section {
+.popup-form-section {
     padding: 10px;
 }
 
-.login-section * {
+.popup-form-section * {
     width: 100%;
 }
 
-.login-section label {
+.popup-form-section label {
     display: block;
     font-weight: bold;
 }
@@ -275,4 +274,5 @@ a:hover.continued {
 
 .close:hover {
     color: #555;
+    cursor: pointer;
 }

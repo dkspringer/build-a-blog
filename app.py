@@ -72,7 +72,7 @@ def view_post():
 def users():
     return render_template('users.html')
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/showRegister', methods=['GET', 'POST'])
 def register():
     return render_template('register.html')
 
