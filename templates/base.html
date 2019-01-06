@@ -14,9 +14,23 @@
         <ul id="topnav">
            <li class="nav-item left"><a id="home-link" href="/">Build-A-Blog</a></li>
            <li class="nav-item left"><a href="/users">Users</a></li>
-           <li class="nav-item left"><a href="/users">My Posts</a></li>
-           <li class="nav-item left"><a href="/create-new-entry">Create Post</a></li>
-           <li class="nav-item right icon"><i id="button-login" class="fas fa-user-circle"></i></li>
+
+            <!-- Do not show 'my posts' and 'create new entry' if not logged in -->
+            {% if logged_in %}
+                <li class="nav-item left"><a href="/users">My Posts</a></li>
+                <li class="nav-item left"><a href="/create-new-entry">Create
+                    Post</a></li>
+            {% endif %}
+
+            <!-- If user is not logged in, show login button, otherwise, show user button -->
+            {% if not logged_in %}
+                <li class="nav-item right icon"><i id="button-login"
+                                                   class="fas fa-user-circle"></i>
+                </li>
+            {% else %}
+                <!-- TODO: add user button -->
+                <!-- TODO: add dropdown menu for user preferences and logout -->
+            {% endif %}
         </ul>
    </div>
     <div id="main">

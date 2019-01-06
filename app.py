@@ -1,7 +1,8 @@
+import json
+from datetime import datetime
+
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-import json
 
 with open('params.json') as file:
     params = json.load(file)
@@ -76,6 +77,8 @@ def users():
 def register():
     return render_template('register.html')
 
+
+# TODO: Add code to add new user
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
