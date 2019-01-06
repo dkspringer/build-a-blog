@@ -4,6 +4,7 @@
     --bg-color: #eeeef4;
     --theme-color: #2f2a7a;
     --theme-color-hover: #4c4797;
+    --inactive-color: #bbb;
 
     /* Radius */
     --theme-radius: 4px;
@@ -16,15 +17,16 @@ body {
 }
 
 html, body {
-    height:100%;
     margin:0;
     padding:0;
 }
 
-input[type=text], textarea {
+input[type=text], input[type=password], textarea {
     border: 1px solid #dadada;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5) inset;
     border-radius: var(--theme-radius);
     box-sizing: border-box;
+    padding: 12px;
 }
 
 #title-input, #body-input {
@@ -37,6 +39,10 @@ input[type=text], textarea {
     padding: 12px;
 }
 
+.new-post input[type=submit] {
+    float: right;
+}
+
 input[type=submit] {
     background-color: var(--theme-color);
     border-radius: var(--theme-radius);
@@ -44,12 +50,11 @@ input[type=submit] {
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     color: white;
     cursor: pointer;
-    float: right;
     font-size: 12pt;
     padding: 5px 40px;
 }
 
-input[type=submit]:hover {
+.new-post input[type=submit]:hover {
     background-color: var(--theme-color-hover);
 }
 
@@ -62,7 +67,7 @@ input[type=submit]:hover {
 }
 
 .nav-item a {
-    color: white;
+    color: var(--inactive-color);
     display: block;
     padding: 8px 8px;
     text-decoration: none;
@@ -70,7 +75,8 @@ input[type=submit]:hover {
 }
 
 .nav-item a:hover {
-    background-color: var(--theme-color-hover);
+    color: white;
+    /*background-color: var(--theme-color-hover);*/
 }
 
 .nav-item {
@@ -183,7 +189,12 @@ a:hover.continued {
 }
 
 #home-link {
+    color: white;
     outline: 1px solid white;
+}
+
+#home-link:hover  {
+    background: var(--theme-color-hover);
 }
 
 .icon {
@@ -191,8 +202,16 @@ a:hover.continued {
     padding: 2px 8px;
 }
 
+.icon i {
+    color: var(--inactive-color);
+}
+
+.icon:hover i {
+    color: white;
+}
+
 .popup-container {
-    background: rgba(0,0,0,.85);
+    background: rgba(0,0,0,.8);
     display: none;
     height: 100%;
     left: 0;
@@ -205,9 +224,55 @@ a:hover.continued {
 }
 
 .popup-content {
-    background: white;
+    background: var(--bg-color);
     border-radius: var(--theme-radius);
     margin: auto;
-    padding: 20px;
-    width: 60%;
+    padding: 10px 20px;
+    width: 400px;
+}
+
+#popup-login form {
+    font-family: Comfortaa;
+    margin: auto;
+}
+
+#popup-login h1 {
+}
+
+.login-section {
+    padding: 10px;
+}
+
+.login-section * {
+    width: 100%;
+}
+
+.login-section label {
+    display: block;
+    font-weight: bold;
+}
+
+.popup-content input[type=text],
+.popup-content input[type=password] {
+    margin: 2px 0;
+    font-size: 14px;
+}
+
+.popup-content input[type=submit] {
+    font-size: 18px;
+}
+
+.popup-content p {
+    font-family: sans-serif;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: #555;
 }

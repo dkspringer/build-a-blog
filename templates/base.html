@@ -9,7 +9,6 @@
     <title>build-a-blog | {{ title }}</title>
 </head>
 <body>
-
 <div id="container">
    <div id="header">
        <ul id="topnav">
@@ -28,9 +27,32 @@
         <p>&copy; 2018 Dave Springer</p>
    </div>
 
+    <!-- Popup for login -->
     <div id="popup-login" class="popup-container">
         <div class="popup-content">
-            <p>Login!</p>
+            <form>
+                <span class="close">&times;</span>
+                <div class="login-section">
+                    <h2>Sign in</h2>
+                    <hr>
+                </div>
+                <div class="login-section">
+                    <label>Email</label>
+                    <input type="text" maxlength="128" id="login_email" name="email" class="input-login">
+                </div>
+                <div class="login-section">
+                    <label>Password</label>
+                    <input type="password" maxlength="128" id="login_email" name="email" class="input-login">
+                </div>
+                <div class="login-section">
+                    <input type="submit" value="Sign in">
+                </div>
+                <div class="login-section">
+                    <hr>
+                    <p>Don't have an account? Create one <a href="#register">here!</a></p>
+                </div>
+            </form>
+
         </div>
     </div>
 
