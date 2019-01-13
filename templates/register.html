@@ -1,8 +1,37 @@
 {% extends "base.html" %}
-
 {% block content %}
-    <h1 class="page-title">Register</h1>
-
-
-
+    <div class="login-container">
+        <form class="user-form" id="register-form" method="post"
+              action="/register">
+            <div class="user-form-section">
+                <h2>Create Account</h2>
+                <hr>
+            </div>
+            <div class="user-form-section">
+                <label>Username</label>
+                <input type="text" maxlength="128" name="user">
+            </div>
+            <div class="user-form-section">
+                <label>Email</label>
+                <input type="text" maxlength="128" name="email">
+            </div>
+            <div class="user-form-section">
+                <label>Password</label>
+                <input type="password" id="input-pwd" maxlength="128"
+                       name="password" placeholder="At least 6 characters">
+            </div>
+            <div class="user-form-section">
+                <label>Re-enter Password</label>
+                <input type="password" id="input-verify" maxlength="128"
+                       name="verify">
+            </div>
+            <div id="section-show-pwd" class="user-form-section">
+                Show Password
+                <input type="checkbox" id="toggle-pwd">
+            </div>
+            <div class="user-form-section">
+                <input type="submit" value="Create build-a-blog account">
+            </div>
+        </form>
+    </div>
 {% endblock %}

@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <script defer src="/static/script.js"></script>
     <title>build-a-blog | {{ title }}</title>
+    {% set logged_in = 'email' in session %}
 </head>
 <body>
 <div id="container">
     <div id="header">
         <ul id="topnav">
-           <li class="nav-item left"><a id="home-link" href="/">Build-A-Blog</a></li>
-           <li class="nav-item left"><a href="/users">Users</a></li>
+
+            <li class="nav-item left"><a id="home-link"
+                                         href="/">Build-A-Blog</a></li>
+            <li class="nav-item left"><a href="/users">Users</a></li>
 
             <!-- Do not show 'my posts' and 'create new entry' if not logged in -->
             {% if logged_in %}
-                <li class="nav-item left"><a href="/users">My Posts</a></li>
+                <li class="nav-item left"><a
+                    href="/user/{{ session['email'] }}">My Posts</a></li>
                 <li class="nav-item left"><a href="/create-new-entry">Create
                     Post</a></li>
             {% endif %}
@@ -29,8 +33,9 @@
                                                    class="fas fa-user-circle"></a>
                 </li>
             {% else %}
-                <!-- TODO: add user button -->
-                <!-- TODO: add dropdown menu for user preferences and logout -->
+                <li class="nav-item right icon"><a href="/logout"
+                                                   class="fas fa-sign-out-alt"></a>
+                </li>
             {% endif %}
         </ul>
    </div>
@@ -44,11 +49,6 @@
 
     <a name="sign-in"></a>
     {% with form_type="login" %}
-    {% include "login-register.html" %}
-    {% endwith %}
-
-    <a name="register"></a>
-    {% with form_type="register" %}
     {% include "login-register.html" %}
     {% endwith %}
 

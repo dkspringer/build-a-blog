@@ -224,7 +224,6 @@ a:hover.continued {
     background: rgba(0,0,0,.8);
     display: none;
     height: 100%;
-    left: 0;
     overflow: auto;
     padding-top: 100px;
     position: fixed;
@@ -233,7 +232,7 @@ a:hover.continued {
     z-index: 1;
 }
 
-.popup-content {
+.login-container {
     background: var(--bg-color);
     border-radius: var(--theme-radius);
     margin: auto;
@@ -246,22 +245,30 @@ a:hover.continued {
     margin: auto;
 }
 
-.popup-content h2,
-.popup-content label {
+.user-form h2,
+.user-form label {
+    font-family: Comfortaa;
     text-transform: lowercase;
 }
 
-.popup-form-section {
+.user-form-section {
     padding: 10px;
 }
 
-.popup-form-section * {
+.user-form-section :not(#toggle-pwd) {
     width: 100%;
 }
 
-.popup-form-section label {
-    display: block;
+.user-form-section label {
     font-weight: bold;
+}
+
+.user-form {
+    text-align: left;
+}
+
+.user-form h2 {
+    text-align: center;
 }
 
 .popup-content input[type=text],

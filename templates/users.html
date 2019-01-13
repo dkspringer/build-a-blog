@@ -4,7 +4,16 @@
     <h1 class="page-title">Users</h1>
 
     <div id="user-list">
-        <h5>no users yet...</h5>
+        {% if users|length < 1 %}
+            <h5>no users yet...</h5>
+        {% else %}
+            {% for user in users %}
+                {% set username = user.user_name %}
+                {% set num_posts = BlogPost %}
+                <h3><a href="/user/{{ user.email_address }}">{{ username }}</a>
+                </h3>
+            {% endfor %}
+        {% endif %}
     </div>
 
 {% endblock %}

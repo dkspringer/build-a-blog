@@ -3,54 +3,40 @@
  */
 
 var popupLogin = document.getElementById("popup-login");
-var popupRegister = document.getElementById("popup-register");
 var buttonLogin = document.getElementById("button-login");
-var buttonCloseLogin = document.getElementsByClassName("close")[0];
-var buttonCloseRegister = document.getElementsByClassName("close")[1];
-var linkRegister = document.getElementById("link-register");
-var linkLogin = document.getElementById("link-login");
+var buttonCloseLogin = document.getElementById("close-login");
+var checkboxTogglePwd = document.getElementById("toggle-pwd");
+var inputPassword = document.getElementById("input-pwd");
+var inputVerify = document.getElementById("input-verify");
 
-function showLogin() {
-    popupLogin.style.display = "block";
+function selectAvatar() {
+    console.log("Change Profile Pic");
 }
 
-function showRegister() {
-    popupRegister.style.display = "block";
-}
+// Handles login and registration button actions
+if (buttonLogin) {
 
-function closePopups() {
-    popups = document.getElementsByClassName("popup-container");
-    for (var i = 0; i < popups.length; i++)
-        popups[i].style.display = "none";
-}
+    buttonLogin.onclick = function () {
+        popupLogin.style.display = "block";
+    }
 
-// When login button is clicked, show the login popup
-buttonLogin.onclick = function() {
-    showLogin();
-};
+    buttonCloseLogin.onclick = function () {
+        popupLogin.style.display = "none";
+    }
 
-linkRegister.onclick = function() {
-    closePopups();
-    showRegister();
-}
+    window.onclick = function (event) {
+        if (event.target == popupLogin)
+            popupLogin.style.display = "none";
+    }
 
-linkLogin.onclick = function() {
-    closePopups();
-    showLogin();
-}
-
-
-// Close login popup by clicking outside of it
-window.onclick = function(event) {
-    if (event.target == popupLogin || event.target == popupRegister)
-        closePopups();
-}
-
-// Close window by clicking 'X' button
-buttonCloseLogin.onclick = function () {
-    closePopups();
-}
-
-buttonCloseRegister.onclick = function () {
-    closePopups();
+    // Toggle password visibility
+    checkboxTogglePwd.onclick = function () {
+        if (inputPassword.type == "password") {
+            inputPassword.type = "text";
+            if (inputVerify) inputVerify.type = "text";
+        } else {
+            inputPassword.type = "password";
+            if (inputVerify) inputVerify.type = "password";
+        }
+    }
 }

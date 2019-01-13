@@ -3,5 +3,6 @@
   "user": "build-a-blog",
   "password": "yHXfmphcFDE7GpUc",
   "ip": "localhost",
-  "port": "8889"
+  "port": "8889",
+  "secret_key": "y337kGcys&zP3B"
 }
