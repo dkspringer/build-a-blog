@@ -1,0 +1,29 @@
+<form class="user-form" method="post" action="/login">
+    <span id="close-login" class="close">×</span>
+    <div class="user-form-section">
+        <h2>Sign in</h2>
+        <hr>
+    </div>
+    <div class="user-form-section">
+        <label>Email</label>
+        <input type="text" maxlength="128" name="email" required>
+    </div>
+    <div class="user-form-section">
+        <label>Password</label>
+        <input type="password" id="input-pwd" maxlength="128"
+               name="password">
+    </div>
+    <div id="section-show-pwd" class="user-form-section">
+        Show Password
+        <input type="checkbox" id="toggle-pwd">
+    </div>
+    <div class="user-form-section">
+        <input type="submit" value="Sign in">
+    </div>
+    <div class="user-form-section">
+        <hr>
+        <p>Don't have an account? Create one <a id="link-register"
+                                                href="/register">here!</a>
+        </p>
+    </div>
+</form>

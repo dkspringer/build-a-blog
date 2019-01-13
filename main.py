@@ -81,14 +81,17 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    email = request.form.get('email')
-    pw = request.form.get('password')
+    if (request.method == 'POST'):
+        email = request.form.get('email')
+        pw = request.form.get('password')
 
-    user = User.query.filter_by(email_address=email).first()
-    if user and check_pw_hash(pw, user.pw_hash):
-        session['email'] = email
-        return redirect('/')
-    return '<h1>NO MATCH...</h1>'
+        user = User.query.filter_by(email_address=email).first()
+        if user and check_pw_hash(pw, user.pw_hash):
+            session['email'] = email
+            return redirect('/')
+        return '<h1>NO MATCH...</h1>'
+
+    return render_template('login.html')
 
     # TODO: If email and password match: start session for user
     # TODO: redirect to previous page
