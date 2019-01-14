@@ -1,8 +1,10 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 
 from app import app, db
-from hashutils import check_pw_hash
+from hashutil import verify_hash
 from models import User, BlogPost
+from validation import passwords_match, is_valid_username, is_valid_password, \
+    is_valid_email, user_exists
 
 
 @app.route('/create-new-entry')
@@ -14,7 +16,7 @@ def create_post():
 def add_post():
     post_title = request.form.get('post-title')
     post_body = request.form.get('post-body')
-    owner = User.query.filter_by(email_address=session['email']).first()
+    owner = User.query.filter_by(user_name=session['user_name']).first()
 
     # Check if content has been provided for both title and body of post
     error = ''
@@ -49,13 +51,13 @@ def users():
     return render_template('users.html', users=User.query.all())
 
 
-@app.route('/user/<email>')
-def user_posts(email):
-    owner = User.query.filter_by(email_address=email).first()
+@app.route('/user/<username>')
+def user_posts(username):
+    owner = User.query.filter_by(user_name=username).first()
     posts = BlogPost.query.filter_by(owner=owner).all()
 
-    username = User.query.filter_by(email_address=email).first().user_name
-    return render_template('user-posts.html', user=username, blog_posts=posts)
+    return render_template('user-posts.html', username=username,
+                           blog_posts=posts)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -69,37 +71,57 @@ def register():
         password = request.form.get('password')
         verify = request.form.get('verify')
 
-        # TODO: validate registration input
+        # Check for errors in new user validation
+        error = False
+        if user_exists(user, email):
+            flash('Username or email address is already in use')
+            # Do not perform any further checks
+            return render_template('register.html')
+        if not is_valid_username(user):
+            flash('Invalid user name: must be between 5 and 32 characters with '
+                  'no spaces')
+            error = True
+        if not is_valid_email(email):
+            flash('The email provided is not a valid email address')
+            error = True
+        if not passwords_match(password, verify):
+            flash('Passwords do not match')
+            error = True
+        if not is_valid_password(password):
+            flash('Invalid password: must be between 8 and 64 characters with '
+                  'no spaces')
+            error = True
 
-        # TODO: add user
-        new_user = User(user, email, password)
-        db.session.add(new_user)
-        db.session.commit()
-        session['email'] = email
-        return redirect('/')
+        # If errors, redisplay registration pages, else create new user
+        if error:
+            return render_template('register.html')
+        else:
+            new_user = User(user, email, password)
+            db.session.add(new_user)
+            db.session.commit()
+            session['user_name'] = user
+            return redirect('/')
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if (request.method == 'POST'):
-        email = request.form.get('email')
+        username = request.form.get('username')
         pw = request.form.get('password')
 
-        user = User.query.filter_by(email_address=email).first()
-        if user and check_pw_hash(pw, user.pw_hash):
-            session['email'] = email
+        user = User.query.filter_by(user_name=username).first()
+        if user and verify_hash(pw, user.pw_hash):
+            session['user_name'] = username
             return redirect('/')
-        return '<h1>NO MATCH...</h1>'
+        else:
+            flash('User does not exist or user name and password do not match')
 
     return render_template('login.html')
-
-    # TODO: If email and password match: start session for user
-    # TODO: redirect to previous page
 
 
 @app.route('/logout')
 def logout():
-    del session['email']
+    del session['user_name']
     return redirect('/')
 
 
@@ -115,21 +137,6 @@ def index():
 
     posts = BlogPost.query.all()
     return render_template('main.html', title='home', blog_posts=posts)
-
-
-@app.context_processor
-def inject_session():
-    return dict(session=session)
-
-
-@app.context_processor
-def inject_user():
-    return dict(User=User)
-
-
-@app.context_processor
-def inject_posts():
-    return dict(BlogPost=BlogPost)
 
 
 if __name__ == '__main__':

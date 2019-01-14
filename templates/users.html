@@ -10,7 +10,7 @@
             {% for user in users %}
                 {% set username = user.user_name %}
                 {% set num_posts = BlogPost %}
-                <h3><a href="/user/{{ user.email_address }}">{{ username }}</a>
+                <h3><a href="/user/{{ username }}">{{ username }}</a>
                 </h3>
             {% endfor %}
         {% endif %}

@@ -7,41 +7,45 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <script defer src="/static/script.js"></script>
     <title>build-a-blog | {{ title }}</title>
-    {% set logged_in = 'email' in session %}
+    {% set logged_in = 'user_name' in session %}
 </head>
 <body>
 <div id="container">
     <div id="header">
         <ul id="topnav">
 
-            <li class="nav-item left"><a id="home-link"
-                                         href="/">Build-A-Blog</a></li>
+            <li class="nav-item left"><a id="home-link" href="/">Build-A-Blog</a></li>
             <li class="nav-item left"><a href="/users">Users</a></li>
 
             <!-- Do not show 'my posts' and 'create new entry' if not logged in -->
             {% if logged_in %}
-                <li class="nav-item left"><a
-                    href="/user/{{ session['email'] }}">My Posts</a></li>
-                <li class="nav-item left"><a href="/create-new-entry">Create
-                    Post</a></li>
+                <li class="nav-item left"><a href="/create-new-entry">Create Post</a></li>
             {% endif %}
 
             <!-- If user is not logged in, show login button, otherwise, show user button -->
             {% if not logged_in %}
-                <li class="nav-item right icon"><a href="#sign-in"
-                                                   id="button-login"
-                                                   class="fas fa-user-circle"></a>
-                </li>
+                <li class="nav-item right icon"><a href="#sign-in" id="button-login" class="fas fa-user-circle"></a></li>
             {% else %}
-                <li class="nav-item right icon"><a href="/logout"
-                                                   class="fas fa-sign-out-alt"></a>
-                </li>
+                <li class="nav-item right icon"><a href="/logout" class="fas fa-sign-out-alt"></a></li>
+                <li class="nav-item right"><a href="/user/{{ session['user_name'] }}">{{ session['user_name'] }}</a></li>
             {% endif %}
+
         </ul>
    </div>
     <div id="main">
         {% block content %}
         {% endblock %}
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="error">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
     </div>
    <div id="footer">
         <p>© 2018 Dave Springer</p>

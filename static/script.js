@@ -9,9 +9,6 @@ var checkboxTogglePwd = document.getElementById("toggle-pwd");
 var inputPassword = document.getElementById("input-pwd");
 var inputVerify = document.getElementById("input-verify");
 
-function selectAvatar() {
-    console.log("Change Profile Pic");
-}
 
 // Handles login and registration button actions
 if (buttonLogin) {

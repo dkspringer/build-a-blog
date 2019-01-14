@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from app import db
-from hashutils import make_pw_hash
+from hashutil import make_pw_hash
 
 
 class BlogPost(db.Model):
@@ -20,7 +20,7 @@ class BlogPost(db.Model):
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_name = db.Column(db.String(50))
+    user_name = db.Column(db.String(50), unique=True)
     email_address = db.Column(db.String(128), unique=True)
     pw_hash = db.Column(db.String(120))
     blog_posts = db.relationship(BlogPost, backref='owner')
