@@ -302,7 +302,6 @@ a:hover.continued {
     border-radius: var(--theme-radius);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     margin: 10px 20%;
-    padding: 5px 25px;
     text-align: left;
 }
 
@@ -338,11 +337,31 @@ a:hover.continued {
 }
 
 .avatar {
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.avatar-small {
     height: 50px;
     width: 50px;
-    border-radius: 50%;
+}
+
+.avatar-post {
+    height: 70px;
+    width: 70px;
 }
 
 .header-row {
     border-bottom: solid 1px;
+}
+
+.post-img {
+    padding-right: 40px;
+}
+
+.user-link,
+.user-link:visited {
+    color: var(--theme-color);
+    font-weight: 400;
+    text-decoration: none;
 }

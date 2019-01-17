@@ -27,7 +27,9 @@
                 <li class="nav-item right icon"><a href="#sign-in" id="button-login" class="fas fa-user-circle"></a></li>
             {% else %}
                 <li class="nav-item right icon"><a href="/logout" class="fas fa-sign-out-alt"></a></li>
-                <li class="nav-item right nav-text"><a href="/user/{{ session['user_name'] }}">{{ session['user_name'] }}</a></li>
+                <li class="nav-item right nav-text"><a href="/user/{{ session['user_name'] }}">
+                    {{ session['user_name'] }}
+                </a></li>
             {% endif %}
 
         </ul>

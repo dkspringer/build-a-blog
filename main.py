@@ -136,6 +136,7 @@ def register():
             db.session.add(new_user)
             db.session.commit()
             session['user_name'] = user
+            session['img_file'] = picture_filename
             return redirect('/')
 
 
@@ -148,6 +149,7 @@ def login():
         user = User.query.filter_by(user_name=username).first()
         if user and verify_hash(pw, user.pw_hash):
             session['user_name'] = username
+            session['img_file'] = user.img_file
             return redirect('/')
         else:
             flash('User does not exist or user name and password do not match')
@@ -158,6 +160,7 @@ def login():
 @app.route('/logout')
 def logout():
     del session['user_name']
+    del session['img_file']
     return redirect('/')
 
 

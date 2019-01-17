@@ -16,7 +16,7 @@
                 </tr>
                 {% for user in users %}
                     <tr onclick="document.location.href='/user/{{ user.username }}'">
-                        <td class="column-avatar"><img class="avatar" src="static/profile-pictures/{{ user.img_file }}"></td>
+                        <td class="column-avatar"><img class="avatar avatar-small" src="static/profile-pictures/{{ user.img_file }}"></td>
                         <td class="column-user">{{ user.username }}</td>
                         <td class="column-post-count">{{ user.num_posts }}
                             {% if user.num_posts == 1 %}
