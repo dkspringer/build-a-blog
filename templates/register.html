@@ -2,7 +2,7 @@
 {% block content %}
     <div class="login-container">
         <form class="user-form" id="register-form" method="post"
-              action="/register">
+              action="/register" enctype="multipart/form-data">
             <div class="user-form-section">
                 <h2>Create Account</h2>
                 <hr>
@@ -28,6 +28,10 @@
             <div id="section-show-pwd" class="user-form-section">
                 Show Password
                 <input type="checkbox" id="toggle-pwd">
+            </div>
+            <div class="user-form-section">
+                <label>Select Profile Picture</label>
+                <input type="file" name="pic" accept="image/*">
             </div>
             <div class="user-form-section">
                 <input type="submit" value="Create build-a-blog account">

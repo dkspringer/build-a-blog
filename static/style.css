@@ -154,7 +154,7 @@ a:hover.continued {
     border: 1px solid red;
     color: red;
     font-style: italic;
-    margin-top: 20px;
+    margin: 20px 25%;
     padding: 5px;
     text-align: center;
 }
@@ -301,12 +301,48 @@ a:hover.continued {
     background-color: white;
     border-radius: var(--theme-radius);
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    margin: 10px 100px;
+    margin: 10px 20%;
     padding: 5px 25px;
     text-align: left;
 }
 
-.nav-item.left {
+.nav-text {
     margin: 7px 0;
 }
 
+#user-table {
+    border-collapse: collapse;
+    font-family: Comfortaa;
+    width: 100%;
+}
+
+#user-table td,
+#user-table th {
+    padding: 5px 20px;
+}
+
+
+#user-table tr:hover {
+    background: #f5f5f5;
+    cursor: pointer;
+}
+
+
+.column-user {
+    font-weight: bold;
+}
+
+.column-last-post,
+.column-post-count {
+    font-style: italic;
+}
+
+.avatar {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.header-row {
+    border-bottom: solid 1px;
+}

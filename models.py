@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from app import db
-from hashutil import make_pw_hash
+from hashutil import make_hash_with_salt
 
 
 class BlogPost(db.Model):
@@ -24,8 +24,10 @@ class User(db.Model):
     email_address = db.Column(db.String(128), unique=True)
     pw_hash = db.Column(db.String(120))
     blog_posts = db.relationship(BlogPost, backref='owner')
+    img_file = db.Column(db.String(100), default='default.jpg')
 
-    def __init__(self, user, email, password):
+    def __init__(self, user, email, password, img_file):
         self.user_name = user
         self.email_address = email
-        self.pw_hash = make_pw_hash(password)
+        self.pw_hash = make_hash_with_salt(password)
+        self.img_file = img_file

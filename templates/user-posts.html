@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="page-title">{{ username }}'s Posts</h1>
+<h1 class="page-title">
+    <img class="avatar" src="/static/profile-pictures/{{ img_file }}">
+    {{ username }}'s Posts</h1>
 
 <!-- Display Blog Posts Here -->
 {% if blog_posts|length == 0 %}
@@ -13,7 +15,7 @@
     <a class="clickable-post" href="{{ post_link }}">
         <h2 class="blog-title">{{ blog_post.title }}</h2>
     </a>
-    <h3 class="date-and-time">{{ blog_post.date.strftime('%A, %B %-d, %Y at %-I:%M %p') }}</h3>
+    <h3 class="date-and-time">{{ blog_post.date.strftime(date_format) }}</h3>
     {% autoescape false %}
     {% if  blog_post.body|length > 1000 %}
         <p class="blog-body">{{ blog_post.body[:999]|replace('\n', '<br>') }}

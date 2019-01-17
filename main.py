@@ -1,10 +1,15 @@
+import os
+import secrets
+
 from flask import render_template, request, redirect, url_for, session, flash
 
 from app import app, db
-from hashutil import verify_hash
+from hashutil import verify_hash, get_hash
 from models import User, BlogPost
 from validation import passwords_match, is_valid_username, is_valid_password, \
     is_valid_email, user_exists
+
+date_format = '%B %-d, %Y at %-I:%M %p'
 
 
 @app.route('/create-new-entry')
@@ -48,7 +53,24 @@ def view_post():
 
 @app.route('/users', methods=['GET'])
 def users():
-    return render_template('users.html', users=User.query.all())
+
+    user_list = []
+    users = User.query.all()
+
+    for user in users:
+        name = user.user_name
+
+        posts = BlogPost.query.filter_by(owner=user)
+        num = posts.count()
+        if num > 0:
+            date = posts.order_by(BlogPost.date.desc()).first().date
+            last = date.strftime(date_format)
+        else:
+            last = ''
+
+        user_list.append({'username':name, 'num_posts':num, 'last_post':last, 'img_file':user.img_file})
+
+    return render_template('users.html', users=user_list)
 
 
 @app.route('/user/<username>')
@@ -57,7 +79,16 @@ def user_posts(username):
     posts = BlogPost.query.filter_by(owner=owner).all()
 
     return render_template('user-posts.html', username=username,
-                           blog_posts=posts)
+                           blog_posts=posts, img_file=owner.img_file)
+
+
+def save_img(pic, username):
+    rand_hex = secrets.token_hex(8)
+    _, extension = os.path.splitext(pic.filename)
+    filename = get_hash(username) + rand_hex + extension
+    path = os.path.join(app.root_path, 'static/profile-pictures', filename)
+    pic.save(path)
+    return  filename
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -70,6 +101,11 @@ def register():
         email = request.form.get('email')
         password = request.form.get('password')
         verify = request.form.get('verify')
+
+        if 'pic' in request.files:
+            picture_filename = save_img(request.files['pic'], user)
+        else:
+            picture_filename = None
 
         # Check for errors in new user validation
         error = False
@@ -96,7 +132,7 @@ def register():
         if error:
             return render_template('register.html')
         else:
-            new_user = User(user, email, password)
+            new_user = User(user, email, password, picture_filename)
             db.session.add(new_user)
             db.session.commit()
             session['user_name'] = user
@@ -137,6 +173,10 @@ def index():
 
     posts = BlogPost.query.all()
     return render_template('main.html', title='home', blog_posts=posts)
+
+@app.context_processor
+def inject_dateformat():
+    return dict(date_format=date_format)
 
 
 if __name__ == '__main__':

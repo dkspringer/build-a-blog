@@ -7,12 +7,30 @@
         {% if users|length < 1 %}
             <h5>no users yet...</h5>
         {% else %}
-            {% for user in users %}
+            <table id="user-table">
+                <tr class="header-row">
+                    <th></th>
+                    <th>User</th>
+                    <th>Posts</th>
+                    <th>Last Post</th>
+                </tr>
+                {% for user in users %}
+                    <tr onclick="document.location.href='/user/{{ user.username }}'">
+                        <td class="column-avatar"><img class="avatar" src="static/profile-pictures/{{ user.img_file }}"></td>
+                        <td class="column-user">{{ user.username }}</td>
+                        <td class="column-post-count">{{ user.num_posts }}
+                            {% if user.num_posts == 1 %}
+                                post
+                            {% else %}
+                                posts
+                            {% endif %}
+                        </td>
+                        <td class="column-last-post">{{ user.last_post }}</td>
+                    </tr>
                 {% set username = user.user_name %}
                 {% set num_posts = BlogPost %}
-                <h3><a href="/user/{{ username }}">{{ username }}</a>
-                </h3>
             {% endfor %}
+            </table>
         {% endif %}
     </div>
 

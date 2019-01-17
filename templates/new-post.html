@@ -5,9 +5,9 @@
 
     <div class="new-post">
         <form action="/submit-post" method="post">
-            <input id="title-input" type="text" name="post-title" maxlength="120" placeholder="Enter a title" value="{{ post_title }}">
+            <input id="title-input" type="text" name="post-title" maxlength="120" placeholder="Enter a title" value="{{ post_title }}" required>
             <br>
-            <textarea id="body-input" name="post-body" rows="20">{{ post_body }}</textarea>
+            <textarea id="body-input" name="post-body" rows="20" required>{{ post_body }}</textarea>
             <br>
             <input type="submit" value="Post">
 
